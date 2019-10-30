@@ -1,0 +1,62 @@
+﻿@model project.Models.QUESTION
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TestStart</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+   
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-xs-10 col-sm-10">
+              
+                    <div class="row">
+                      <h1 style="font-family:Arial, Helvetica, sans-serif">Que:&nbsp;@Html.DisplayFor(x => x.QUESTION_TEXT)</h1>
+                    </div>
+                <br />
+                <br />
+                <div class="row">
+                    <h3>A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.RadioButtonFor(x => x.OPTIONA, @Model.QUESTION_ID) @Model.OPTIONA</h3>
+                </div>
+                    <div class="row">
+                        <h3>B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.RadioButtonFor(x => x.OPTIONB, @Model.QUESTION_ID) @Model.OPTIONB</h3>
+                    </div>
+                    <div class="row">
+                        <h3>C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.RadioButtonFor(x => x.OPTIONC, @Model.QUESTION_ID) @Model.OPTIONC</h3>
+                    </div>
+                    <div class="row">
+                        <h3>D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.RadioButtonFor(x => x.OPTIOND, @Model.QUESTION_ID) @Model.OPTIOND</h3>
+                    </div>
+                    <div class="row"style="display:none">
+                         @Html.TextBoxFor(x =>x.COREECT_OPTION)
+                    </div>
+                <div>
+            </div>
+        <br />
+        <br />
+                    <div class="row">
+                        <input type="submit" value="Submit" class="btn btn-success" />
+                    </div>
+               
+            </div>
+       <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+          @*<img src="~/Content/images/14.jpg" class="img-responsive" />*@
+       </div>
+            </div>
+        </div>
+    }
+   
+</body>
+</html>

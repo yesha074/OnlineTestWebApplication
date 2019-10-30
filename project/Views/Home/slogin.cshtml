@@ -1,0 +1,73 @@
+﻿@model project.Models.STUDENT
+
+@{
+    ViewBag.Title = "slogin";
+}
+<style>
+    body {
+        background-color: palegreen;
+    }
+</style>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-xs-10 col-sm-10">
+                    <h2 style="color:darkblue;font-family:'Arial Rounded MT';margin-left:22%">Student Login</h2>
+                    <hr />
+                    <br />
+                    @if (ViewBag.msg != null)
+                    {
+                        <div class="alert alert-danger">
+                            <strong>Sorry!...</strong>@ViewBag.msg
+                        </div>
+                    }
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group" style="color:darkblue">
+                        @Html.LabelFor(model => model.STUDENT_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.STUDENT_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.STUDENT_NAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="color:darkblue">
+                        @Html.LabelFor(model => model.STUDENT_PASSWORD, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(model => model.STUDENT_PASSWORD, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.STUDENT_PASSWORD, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Login Now!" class="btn btn-danger btn-block" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">
+                    <img src="~/Content/images/studentlogin.jpg" class="img-responsive" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<br />
+<br />
+<div>
+  <h5 style="width:24%;margin-left:17%;color:red;">If You Are Not Registered Then You Can</h5><h4 style="width:24%;margin-left:23%;">@Html.ActionLink("Register Now!", "sregister")</h4>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

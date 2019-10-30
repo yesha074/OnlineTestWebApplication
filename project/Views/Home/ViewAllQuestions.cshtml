@@ -1,0 +1,68 @@
+﻿@model IEnumerable<project.Models.QUESTION>
+
+@{
+    ViewBag.Title = "ViewAllQuestions";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2 style="text-align:center;font-family:Arial Rounded MT;color:red">View Questions</h2>
+<br />
+
+
+<table class="table">
+    <tr>
+        <th>
+            QUESTION
+        </th>
+        <th>
+            OPTION A
+        </th>
+        <th>
+            OPTION B
+        </th>
+        <th>
+            OPTION C
+        </th>
+        <th>
+            OPTION D
+        </th>
+        <th>
+            CORRECT OPTION
+        </th>
+        <th>CATEGORY NAME</th>
+        <th>Edit|Delete</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QUESTION_TEXT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OPTIONA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OPTIONB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OPTIONC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OPTIOND)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.COREECT_OPTION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CATEGORY.CATEGORY_NAME)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.QUESTION_ID }) |
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.QUESTION_ID })
+            </td>
+        </tr>
+    }
+
+</table>

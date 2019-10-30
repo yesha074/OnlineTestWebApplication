@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        body
+        {
+            background-image: url('../../Content/images/15.jpg');
+            background-size: cover;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>EndExam</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div>
+        <h1 style="text-align:center;color:red;">Exam Ends! Thank You!!</h1><br />
+        <h2 style="text-align:center">Your Score is:<strong style="color:red">@TempData["score"]</strong></h2>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <h3 style="text-align:center;font-family:AR BERKLEY;color:darkmagenta;">If You Want to Give Another Test than @Html.ActionLink("Click Here","Instructions") </h3>
+    <h3 style="text-align:center;font-family:AR BERKLEY;color:darkmagenta;">Else You Can @Html.ActionLink("Logout","StudentLogout")</h3>
+    
+</body>
+</html>

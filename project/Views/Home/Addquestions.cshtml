@@ -1,0 +1,86 @@
+﻿@model project.Models.QUESTION
+
+@{
+    ViewBag.Title = "Addquestions";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2 style="text-align:center;font-family:Arial Rounded MT;color:red">Add Questions</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+<h1 style="color:green">@TempData["msg"]</h1>
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.QUE_FKEY_CATEGORYID, "QUE_FKEY_CATEGORYID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("QUE_FKEY_CATEGORYID", ViewBag.list as SelectList,"--Select Your Category--",htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.QUE_FKEY_CATEGORYID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.QUESTION_TEXT, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QUESTION_TEXT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QUESTION_TEXT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OPTIONA, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OPTIONA, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OPTIONA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OPTIONB, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OPTIONB, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OPTIONB, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OPTIONC, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OPTIONC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OPTIONC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OPTIOND, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OPTIOND, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OPTIOND, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.COREECT_OPTION, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.COREECT_OPTION, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.COREECT_OPTION, "", new { @class = "text-danger" })
+            </div>
+            <h5 style="color:green;margin-left:20%;">
+                [Only Write Correct Option Name!(A &nbsp;&nbsp;<u>or</u> &nbsp;&nbsp; B &nbsp;&nbsp;
+                <u>or</u> &nbsp;&nbsp; C&nbsp;&nbsp; <u>or</u> &nbsp;&nbsp; D)]
+            </h5>
+        </div>
+        <br />
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                 <input type="submit" value="Add Question" style="width:20%" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<project.Models.CATEGORY>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Instructions</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="height:900px; background-color:sandybrown">
+            <table class="table">
+                <tr>
+                    <th style="color:white">
+                        CATEGORY
+                    </th>
+                    <th style="color:white">
+                        CODE
+                    </th>
+                </tr>
+               
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="color:white">
+                            @Html.DisplayFor(modelItem => item.CATEGORY_NAME)
+                        </td>
+
+                        <td style="color:white">
+                            @Html.DisplayFor(modelItem => item.CATEGORY_ENC_STRING)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="height:900px;background-image: url('../../Content/images/15.jpg');
+            background-size: cover;
+      ">
+
+
+            <h1 style="color:red">Read All Instructions Carefully!</h1>
+            <hr />
+            <h3 style="color:blue">  <b style="color:red">=></b>&nbsp;&nbsp; Copy Corresponding Code Of Your Test</h3>
+            <br />
+            <h3 style="color:blue">
+                <b style="color:red">=></b>&nbsp;&nbsp; Paste This Code In Category's TextBox<br/>
+                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Given on Next Page
+            </h3>
+            <br />
+            <h3 style="color:blue"> <b style="color:red">=></b>&nbsp;&nbsp; Click On &nbsp;&nbsp;<b style="color:red">START TEST</b>&nbsp;&nbsp; Button</h3>
+            <br />
+
+            <br />
+            <br />
+            <br />
+            <a class="btn btn-success" style="width:40%;height:4%;" href="@Url.Action("StudentExam")">GO TO NEXT</a>
+
+        </div>
+
+
+
+
+    </div>
+</body>
+</html>

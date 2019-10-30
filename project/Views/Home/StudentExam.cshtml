@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StudentExam</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-image: url('../../Content/images/15.jpg');
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    @if(ViewBag.error!=null)
+    {
+    <div class="alert alert-danger">
+        <strong>Sorry!....</strong> @ViewBag.error
+    </div>
+    }
+
+
+    @using (Html.BeginForm())
+    {
+
+
+        <div class="container">
+            <h1 style="text-align:center;font-family:'Arial Rounded MT';color:red;">Enter Your Category Code</h1>
+            <hr />
+            <br />
+            <center><input type="text" id="room" name="room" placeholder="Category Code" style="width:50%" class="form-control" /></center>
+            <br />
+            <br />
+            <center><input type="submit" value="START TEST" style="width:50%" class="btn btn-info" /></center>
+        </div>
+    }
+</body>
+</html>

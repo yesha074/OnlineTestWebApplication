@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="onlinetestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ADMIN_ID" />
+          </Key>
+          <Property Name="ADMIN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ADMIN_NAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ADMIN_PASSWORD" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CATEGORY_FKEY_ADMINID" Type="int" />
+          <Property Name="CATEGORY_ENC_STRING" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="QUESTIONS">
+          <Key>
+            <PropertyRef Name="QUESTION_ID" />
+          </Key>
+          <Property Name="QUESTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QUESTION_TEXT" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="OPTIONA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OPTIONB" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OPTIONC" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OPTIOND" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="COREECT_OPTION" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="QUE_FKEY_CATEGORYID" Type="int" />
+        </EntityType>
+        <EntityType Name="STUDENT">
+          <Key>
+            <PropertyRef Name="STUDENT_ID" />
+          </Key>
+          <Property Name="STUDENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STUDENT_NAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="STUDENT_PASSWORD" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="STUDENT_IMAGE" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CATEGORY__CATEGO__36B12243">
+          <End Role="ADMIN" Type="Self.ADMIN" Multiplicity="0..1" />
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN">
+              <PropertyRef Name="ADMIN_ID" />
+            </Principal>
+            <Dependent Role="CATEGORY">
+              <PropertyRef Name="CATEGORY_FKEY_ADMINID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QUESTIONS__QUE_F__4CA06362">
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
+          <End Role="QUESTIONS" Type="Self.QUESTIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Principal>
+            <Dependent Role="QUESTIONS">
+              <PropertyRef Name="QUE_FKEY_CATEGORYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="onlinetestModelStoreContainer">
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUESTIONS" EntityType="Self.QUESTIONS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STUDENT" EntityType="Self.STUDENT" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CATEGORY__CATEGO__36B12243" Association="Self.FK__CATEGORY__CATEGO__36B12243">
+            <End Role="ADMIN" EntitySet="ADMIN" />
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QUESTIONS__QUE_F__4CA06362" Association="Self.FK__QUESTIONS__QUE_F__4CA06362">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="QUESTIONS" EntitySet="QUESTIONS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="onlinetestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="ADMIN_ID" />
+          </Key>
+          <Property Name="ADMIN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ADMIN_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ADMIN_PASSWORD" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CATEGORY" Relationship="onlinetestModel.FK__CATEGORY__CATEGO__36B12243" FromRole="ADMIN" ToRole="CATEGORY" />
+        </EntityType>
+        <EntityType Name="QUESTION">
+          <Key>
+            <PropertyRef Name="QUESTION_ID" />
+          </Key>
+          <Property Name="QUESTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QUESTION_TEXT" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OPTIONA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OPTIONB" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OPTIONC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OPTIOND" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COREECT_OPTION" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QUE_FKEY_CATEGORYID" Type="Int32" />
+          <NavigationProperty Name="CATEGORY" Relationship="onlinetestModel.FK__QUESTIONS__QUE_F__37A5467C" FromRole="QUESTION" ToRole="CATEGORY" />
+        </EntityType>
+        <EntityType Name="STUDENT">
+          <Key>
+            <PropertyRef Name="STUDENT_ID" />
+          </Key>
+          <Property Name="STUDENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STUDENT_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="STUDENT_PASSWORD" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="STUDENT_IMAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="onlinetestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
+          <EntitySet Name="QUESTIONS" EntityType="Self.QUESTION" />
+          <EntitySet Name="STUDENTs" EntityType="Self.STUDENT" />
+          <EntitySet Name="CATEGORies" EntityType="onlinetestModel.CATEGORY" />
+          <AssociationSet Name="FK__CATEGORY__CATEGO__36B12243" Association="onlinetestModel.FK__CATEGORY__CATEGO__36B12243">
+            <End Role="ADMIN" EntitySet="ADMINs" />
+            <End Role="CATEGORY" EntitySet="CATEGORies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QUESTIONS__QUE_F__37A5467C" Association="onlinetestModel.FK__QUESTIONS__QUE_F__37A5467C">
+            <End Role="CATEGORY" EntitySet="CATEGORies" />
+            <End Role="QUESTION" EntitySet="QUESTIONS" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="CATEGORY_ID" />
+          </Key>
+          <Property Name="CATEGORY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CATEGORY_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CATEGORY_FKEY_ADMINID" Type="Int32" />
+          <NavigationProperty Name="ADMIN" Relationship="onlinetestModel.FK__CATEGORY__CATEGO__36B12243" FromRole="CATEGORY" ToRole="ADMIN" />
+          <NavigationProperty Name="QUESTIONS" Relationship="onlinetestModel.FK__QUESTIONS__QUE_F__37A5467C" FromRole="CATEGORY" ToRole="QUESTION" />
+          <Property Name="CATEGORY_ENC_STRING" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__CATEGORY__CATEGO__36B12243">
+          <End Type="onlinetestModel.ADMIN" Role="ADMIN" Multiplicity="0..1" />
+          <End Type="onlinetestModel.CATEGORY" Role="CATEGORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADMIN">
+              <PropertyRef Name="ADMIN_ID" />
+            </Principal>
+            <Dependent Role="CATEGORY">
+              <PropertyRef Name="CATEGORY_FKEY_ADMINID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QUESTIONS__QUE_F__37A5467C">
+          <End Type="onlinetestModel.CATEGORY" Role="CATEGORY" Multiplicity="0..1" />
+          <End Type="onlinetestModel.QUESTION" Role="QUESTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="CATEGORY_ID" />
+            </Principal>
+            <Dependent Role="QUESTION">
+              <PropertyRef Name="QUE_FKEY_CATEGORYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="onlinetestModelStoreContainer" CdmEntityContainer="onlinetestEntities">
+          <EntitySetMapping Name="ADMINs">
+            <EntityTypeMapping TypeName="onlinetestModel.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="ADMIN_ID" ColumnName="ADMIN_ID" />
+                <ScalarProperty Name="ADMIN_NAME" ColumnName="ADMIN_NAME" />
+                <ScalarProperty Name="ADMIN_PASSWORD" ColumnName="ADMIN_PASSWORD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUESTIONS">
+            <EntityTypeMapping TypeName="onlinetestModel.QUESTION">
+              <MappingFragment StoreEntitySet="QUESTIONS">
+                <ScalarProperty Name="QUE_FKEY_CATEGORYID" ColumnName="QUE_FKEY_CATEGORYID" />
+                <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+                <ScalarProperty Name="QUESTION_TEXT" ColumnName="QUESTION_TEXT" />
+                <ScalarProperty Name="OPTIONA" ColumnName="OPTIONA" />
+                <ScalarProperty Name="OPTIONB" ColumnName="OPTIONB" />
+                <ScalarProperty Name="OPTIONC" ColumnName="OPTIONC" />
+                <ScalarProperty Name="OPTIOND" ColumnName="OPTIOND" />
+                <ScalarProperty Name="COREECT_OPTION" ColumnName="COREECT_OPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STUDENTs">
+            <EntityTypeMapping TypeName="onlinetestModel.STUDENT">
+              <MappingFragment StoreEntitySet="STUDENT">
+                <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+                <ScalarProperty Name="STUDENT_NAME" ColumnName="STUDENT_NAME" />
+                <ScalarProperty Name="STUDENT_PASSWORD" ColumnName="STUDENT_PASSWORD" />
+                <ScalarProperty Name="STUDENT_IMAGE" ColumnName="STUDENT_IMAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORies">
+            <EntityTypeMapping TypeName="onlinetestModel.CATEGORY">
+              <MappingFragment StoreEntitySet="CATEGORY">
+                <ScalarProperty Name="CATEGORY_ENC_STRING" ColumnName="CATEGORY_ENC_STRING" />
+                <ScalarProperty Name="CATEGORY_FKEY_ADMINID" ColumnName="CATEGORY_FKEY_ADMINID" />
+                <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
